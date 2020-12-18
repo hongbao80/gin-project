@@ -12,7 +12,20 @@
     </a>
     <!--Display the content of the article-->
     <p>{{.Content}}</p>
+    <button class="btn btn-primary" type="submit" id = "btnDelete" name="Delete">Xóa</button>
 {{end}}
+<script>
+    function onClick() {
+        $(document).ready(function () {
+            $("#btnDelete").click(function () {
+                alert("Delete")
+
+            })
+        })
+    }
+    onClick()
+
+</script>
 
 <!--Embed the footer.html template at this location-->
 {{ template "footer.html" .}}
