@@ -5,18 +5,10 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 blocks:
-  - name: Install dependencies
+  - name: Build
+    dependencies: []
     task:
       jobs:
-        - name: Install
+        - name: Build
           commands:
-            - sem-version go 1.15
-            - checkout
-            - 'cache restore vendor-$SEMAPHORE_GIT_BRANCH-$(checksum go.mod),vendor-$SEMAPHORE_GIT_BRANCH,vendor-master'
-            - go mod vendor
-            - 'cache store vendor-$SEMAPHORE_GIT_BRANCH-$(checksum go.mod),vendor-$SEMAPHORE_GIT_BRANCH,vendor-master vendor'
-      env_vars:
-        - name: GO111MODULE
-          value: 'on'
-        - name: GOFLAGS
-          value: '-mod=vendor'
+            - go build -v -o gin-project
