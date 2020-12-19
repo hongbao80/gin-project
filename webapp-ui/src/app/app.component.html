@@ -1,8 +1,11 @@
-<bootstrap-panel>
-    <ng-container class="heading">Heading</ng-container>
-    <div class="body">
-        <h2>Body</h2>
-        <p>Some content here...</p>
-    </div>
 
-</bootstrap-panel>
+
+<div *ngIf="anyCourses(); then coursesList else noCourses"> </div>
+
+<ng-template #coursesList>
+    List of cources
+</ng-template>
+
+<ng-template #noCourses>
+    No courses yet
+</ng-template>
