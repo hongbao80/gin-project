@@ -10,7 +10,8 @@ export class FavoriteComponent implements OnInit {
   // @Input('is-favorite') isSelected: boolean;
   @Input('isFavorite') isSelected: boolean;
 
-  @Output() change = new EventEmitter();
+  // alias for output properties
+  @Output('change') click = new EventEmitter();
   constructor() { }
 
   ngOnInit(): void {
@@ -19,7 +20,7 @@ export class FavoriteComponent implements OnInit {
   onClick() {
     console.log("Clicked")
     this.isSelected = !this.isSelected;
-    this.change.emit({newValue: this.isSelected});
+    this.click.emit({newValue: this.isSelected});
   }
 
 }
