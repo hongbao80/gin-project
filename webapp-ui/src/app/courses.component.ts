@@ -5,26 +5,11 @@ import {Component} from '@angular/core'
     templateUrl: './courses.component.html'
 })
 export class CoursesComponent {
-    title = "List of courses";
-    imageUrl = "https://picsum.photos/id/237/200/300";
-    colSpan = 2;
-    isActive = false;
-    email = "example@gmail.com";
-    onTest($event) {
-        $event.stopPropagation(); // stop bubble up event
-        console.log($event);
-    }
-
-    onDivClick() {
-        console.log("Div was clicked");
-    }
-
-    onKeyUp($event) {
-        if ($event.keyCode === 13) 
-            console.log("Enter was pressed ", $event.target.value)
-    }
-
-    onKeyUpEmail2() {
-        console.log("Hi, your email is: ", this.email)
+    course = {
+        title: "The complete angular course",
+        rating: 4.9745,
+        students: 30300,
+        price: 190.99,
+        releaseDate: new Date(2020, 12, 2)
     }
 }

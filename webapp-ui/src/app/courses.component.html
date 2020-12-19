@@ -1,25 +1,5 @@
-<p>{{ title }}</p>
-<img src="{{imageUrl}}"/>
-<img [src]="title"/>
-
-<table>
-    <tr>
-        <td [attr.colspan]="colSpan"></td>
-    </tr>
-
-</table>
-
-<div (click)="onDivClick()">
-    <button class="btn btn-primary" [class.active]="isActive" (click)="onTest($event)">Test bootstrap</button>
-</div>
-<button [style.backgroundColor]="isActive ? 'blue' : 'red'">Test style</button>
-
-<!-- <input (keyup.enter)="onKeyUp($event)" /> -->
-
-<!-- // Declare variable -->
-<!-- <input (keyup.enter)="onKeyUpEmail(email.value)" />  -->
-
-<!-- field  property binding: email -->
-<!-- <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUpEmail2()" />  -->
-<input [(ngModel)]="email" (keyup.enter)="onKeyUpEmail2()" /> 
-
+{{course.title | uppercase | lowercase}} <br/>
+{{course.students | number}}<br/>
+{{course.rating | number:'2.1-3'}}<br/>
+{{course.price | currency:'VND':true:'3.2-2'}}<br/>
+{{course.releaseDate | date:'longDate'}}
