@@ -1,10 +1,5 @@
-<ul class="navbar navbar-expand-sm">
-    <li [class.active]="viewMode =='map'" ><a (click)="viewMode = 'map'">Map view</a></li>
-    <li [class.active]="viewMode =='list'" ><a (click)="viewMode = 'list'">List view</a></li>
+<ul>
+    <li *ngFor="let c of courses;even as isEven">
+        {{i}} - {{c.name}} - {{c.age}} <span *ngIf="isEven">(EVEN)</span>
+    </li>
 </ul>
-
-<div [ngSwitch]="viewMode">
-    <div *ngSwitchCase="'map'">Map view content</div>
-    <div *ngSwitchCase="'list'">List view content</div>
-    <div *ngSwitchDefault>Other way</div>
-</div>
