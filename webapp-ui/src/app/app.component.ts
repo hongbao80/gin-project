@@ -7,6 +7,7 @@ import { FavoriteChangedEventArgs } from './favorite/favorite.component'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  
   courses = []
   onAdd() {
     this.courses.push({ name: "Hix", age: 200 })
@@ -29,5 +30,9 @@ export class AppComponent {
 
   trackCourse(index, course) {
     return course ? course.name : undefined
+  }
+
+  onChange(arg) {
+
   }
 }
