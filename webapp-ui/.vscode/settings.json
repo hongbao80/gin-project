@@ -1,2 +1,9 @@
 {
+    "terminal.integrated.shell.windows": "C:\\Users\\boy97\\AppData\\Local\\Microsoft\\WindowsApps\\ubuntu2004.exe",
+    "editor.codeLensFontFamily": "Menlo for Powerline",
+    "editor.fontFamily": "Consolas, 'Courier New', monospace, Menlo for Powerline",
+    "terminal.integrated.fontFamily": "Menlo for Powerline",
+    "terminal.integrated.fontWeightBold": null,
+    "terminal.integrated.cwd": "${fileDirname}",
+    "terminal.integrated.automationShell.linux": ""
 }
