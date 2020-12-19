@@ -1,7 +1,9 @@
-<button (click)="onAdd()" class="btn btn-primary">Add</button>
+<button (click)="loadCourses()" class="btn btn-secondary">Load courses</button>
 
 <ul>
-    <li *ngFor="let c of courses;even as isEven">
-        {{i}} - {{c.name}} - {{c.age}} <button (click)="onRemove(c)" class="btn btn-danger">Remove</button>
+    <!-- trackBy make sure angular do not reload element's data -->
+    <li *ngFor="let c of courses; trackBy: trackCourse">
+        {{c.name}} - {{c.age}}
+
     </li>
 </ul>
