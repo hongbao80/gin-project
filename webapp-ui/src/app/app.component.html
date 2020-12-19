@@ -1,5 +1,7 @@
+<button (click)="onAdd()" class="btn btn-primary">Add</button>
+
 <ul>
     <li *ngFor="let c of courses;even as isEven">
-        {{i}} - {{c.name}} - {{c.age}} <span *ngIf="isEven">(EVEN)</span>
+        {{i}} - {{c.name}} - {{c.age}} <button (click)="onRemove(c)" class="btn btn-danger">Remove</button>
     </li>
 </ul>

@@ -13,4 +13,13 @@ export class AppComponent {
     {name:"Vui",age:25},
 
   ]
+
+  onAdd( ) {
+    this.courses.push({name: "Hix", age: 200})
+  }
+
+  onRemove(course) {
+      let index = this.courses.indexOf(course)
+      this.courses.splice(index, 1)
+  }
 }
