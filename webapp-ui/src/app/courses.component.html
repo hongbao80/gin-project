@@ -1,0 +1,20 @@
+<p>{{ title }}</p>
+<img src="{{imageUrl}}"/>
+<img [src]="title"/>
+
+<table>
+    <tr>
+        <td [attr.colspan]="colSpan"></td>
+    </tr>
+
+</table>
+
+<div (click)="onDivClick()">
+    <button class="btn btn-primary" [class.active]="isActive" (click)="onTest($event)">Test bootstrap</button>
+</div>
+<button [style.backgroundColor]="isActive ? 'blue' : 'red'">Test style</button>
+
+<input (keyup.enter)="onKeyUp($event)" />
+
+<!-- // Declare variable -->
+<input #email (keyup.enter)="onKeyUpEmail(email.value)" /> 
