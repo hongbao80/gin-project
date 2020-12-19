@@ -1,11 +1,12 @@
-<button (click)="loadCourses()" class="btn btn-secondary">Load courses</button>
+<button
+    (click)="onClickSave()"
 
-<ul>
-    <!-- trackBy make sure angular do not reload element's data -->
-    <li *ngFor="let c of courses; trackBy: trackCourse">
-        {{c.name}} - {{c.age}}
+    [ngStyle] = "{
+        'backgroundColor': canSave ? 'blue' : 'red',
+        'color': canSave ? 'red' : 'white',
+        'fontWeight' : canSave ? 'bold' : 'normal'
+    }"
+>
 
-    </li>
-</ul>
-
-<favorite (change)="onChange($event)"></favorite>
+Save
+</button>
