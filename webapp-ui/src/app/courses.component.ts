@@ -5,11 +5,5 @@ import {Component} from '@angular/core'
     templateUrl: './courses.component.html'
 })
 export class CoursesComponent {
-    course = {
-        title: "The complete angular course",
-        rating: 4.9745,
-        students: 30300,
-        price: 190.99,
-        releaseDate: new Date(2020, 12, 2)
-    }
+    text = "Xin chào, mình là vũ, nick facebook của mình là fb.com/HBTeamobi, rất hân hạnh được làm quen với tất cả các bạn"
 }
