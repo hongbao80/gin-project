@@ -14,7 +14,12 @@
 </div>
 <button [style.backgroundColor]="isActive ? 'blue' : 'red'">Test style</button>
 
-<input (keyup.enter)="onKeyUp($event)" />
+<!-- <input (keyup.enter)="onKeyUp($event)" /> -->
 
 <!-- // Declare variable -->
-<input #email (keyup.enter)="onKeyUpEmail(email.value)" /> 
+<!-- <input (keyup.enter)="onKeyUpEmail(email.value)" />  -->
+
+<!-- field  property binding: email -->
+<!-- <input [value]="email" (keyup.enter)="email = $event.target.value; onKeyUpEmail2()" />  -->
+<input [(ngModel)]="email" (keyup.enter)="onKeyUpEmail2()" /> 
+

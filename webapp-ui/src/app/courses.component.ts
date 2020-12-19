@@ -9,7 +9,7 @@ export class CoursesComponent {
     imageUrl = "https://picsum.photos/id/237/200/300";
     colSpan = 2;
     isActive = false;
-
+    email = "example@gmail.com";
     onTest($event) {
         $event.stopPropagation(); // stop bubble up event
         console.log($event);
@@ -24,7 +24,7 @@ export class CoursesComponent {
             console.log("Enter was pressed ", $event.target.value)
     }
 
-    onKeyUpEmail(email) {
-        console.log("Hi, your email is: ", email)
+    onKeyUpEmail2() {
+        console.log("Hi, your email is: ", this.email)
     }
 }
