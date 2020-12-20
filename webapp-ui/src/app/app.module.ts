@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms'
 import { SummaryPipe } from './summary.pipe';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,7 +17,8 @@ import { PanelComponent } from './panel/panel.component';
     CoursesComponent,
     SummaryPipe,
     FavoriteComponent,
-    PanelComponent
+    PanelComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
