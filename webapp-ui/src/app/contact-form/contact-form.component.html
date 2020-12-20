@@ -3,12 +3,33 @@
     <label for="firstName">First Name</label>
     <!-- ngModel need name atrribute to distingush form object-->
     <!-- pass model to log function -->
-    <input required ngModel name ="firstName" minlength="3" maxlength="30" pattern="^[A-Za-z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*$" #firstName="ngModel" (change)="log(firstName)" id="firstName" type="text" class="form-control">
-    <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
-        <div *ngIf="firstName.errors.required">First Name is required</div>
-        <div *ngIf="firstName.errors.minlength">Min length should be minium 3 character</div>
-        <div *ngIf="firstName.errors.maxlength">Min length should be maximum 30 character</div>
-        <div *ngIf="firstName.errors.pattern">FirstName doesn't match the pattern </div>
+    <input 
+        required 
+        ngModel 
+        name ="firstName" 
+        minlength="3" 
+        maxlength="30" 
+        pattern="^[A-Za-z ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]*$" 
+        #firstName="ngModel" 
+        (change)="log(firstName)" 
+        id="firstName" 
+        type="text" 
+        class="form-control">
+    <div 
+        class="alert alert-danger"
+        *ngIf="firstName.touched && !firstName.valid">
+            <div*ngIf="firstName.errors.required">
+                First Name is required
+            </div>
+            <div *ngIf="firstName.errors.minlength">
+                Min length should be minium 3 character
+            </div>
+            <div *ngIf="firstName.errors.maxlength">
+                Min length should be maximum 30 character
+            </div>
+            <div *ngIf="firstName.errors.pattern">
+                FirstName doesn't match the pattern 
+            </div>
     </div>
 </div>
 <div class="form-group">
