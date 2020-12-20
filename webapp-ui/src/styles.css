@@ -6,3 +6,7 @@
 .form-control.ng-touched.ng-invalid {
     border: 2px solid red
 }
+
+body {
+    padding: 50px;
+}
