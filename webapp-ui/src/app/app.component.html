@@ -1,12 +1,3 @@
-<button
-    (click)="onClickSave()"
-
-    [ngStyle] = "{
-        'backgroundColor': canSave ? 'blue' : 'red',
-        'color': canSave ? 'red' : 'white',
-        'fontWeight' : canSave ? 'bold' : 'normal'
-    }"
->
-
-Save
-</button>
+<!-- Not show error in console log, and not render span -->
+<span *ngIf="task.assignee">{{task.assignee.name}}</span>
+<span >{{task.assignee?.name}}</span>

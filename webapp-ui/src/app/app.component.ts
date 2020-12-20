@@ -7,8 +7,8 @@ import { FavoriteChangedEventArgs } from './favorite/favorite.component'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  canSave = true
-  onClickSave() {
-    this.canSave = !this.canSave
-  }
+   task = {
+     title: 'Review applications',
+     assignee: null
+   }
 }
