@@ -29,6 +29,13 @@
     </select>
 </div>
 
+<div *ngFor="let method of contactMethod" class="radio">
+    <label for="">
+        <!-- [value] - property binding  -->
+        <input type="radio" name="contactMethod" [value]="method.id">
+        {{method.name}}
+    </label>
+</div>
 
 <div class="checkbox">
     <label for="">
