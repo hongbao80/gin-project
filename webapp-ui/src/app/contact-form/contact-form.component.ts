@@ -16,4 +16,8 @@ export class ContactFormComponent  {
   comment(cmt) {
     console.log("Comment:", cmt)
   }
+
+  submit(f) {
+    console.log(f.value)
+  }
 }
