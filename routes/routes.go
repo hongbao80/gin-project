@@ -12,7 +12,7 @@ func InitializeRoutes() {
 	router := gin.Default()
 	router.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:4200"},
-		AllowMethods:     []string{"GET","POST","PUT", "PATCH"},
+		AllowMethods:     []string{"GET","POST","PUT", "PATCH", "DELETE"},
 		AllowHeaders:     []string{"Content-Type", "Accept"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
@@ -32,6 +32,8 @@ func InitializeRoutes() {
 	router.POST("/posts", createPosts)
 
 	router.PUT("/posts/:post_id", updatePost)
+
+	router.DELETE("/posts/:post_id", deletePost)
 	router.Run()
 }
 

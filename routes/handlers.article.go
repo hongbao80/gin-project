@@ -2,12 +2,10 @@ package routes
 
 import (
 	"encoding/json"
+	"github.com/gin-gonic/gin"
 	"io/ioutil"
 	"models"
 	"net/http"
-	"strconv"
-
-	"github.com/gin-gonic/gin"
 )
 
 func showIndexPage(c *gin.Context) {
@@ -26,7 +24,7 @@ func showIndexPage(c *gin.Context) {
 
 
 func getArticle(context *gin.Context) {
-	if id, err := strconv.Atoi(context.Param("post_id")); err == nil {
+	if id := context.Param("post_id"); id != "0" {
 		if article, err := models.GetPostByID(id); err == nil {
 
 			render(context,
@@ -58,10 +56,17 @@ func createPosts(context *gin.Context) {
 	jsonData, _ := ioutil.ReadAll(context.Request.Body)
 	json.Unmarshal(jsonData, &p)
 	models.CreatePost(&p)
+
+	render(context,
+		gin.H{
+			"payload": p,
+		},
+		"")
+
 }
 
 func updatePost(context *gin.Context) {
-	if id, err := strconv.Atoi(context.Param("post_id")); err == nil {
+	if id := context.Param("post_id"); id != "0" {
 		if post, err := models.GetPostByID(id); err == nil {
 			var p models.Post
 			jsonData, _ := ioutil.ReadAll(context.Request.Body)
@@ -70,6 +75,19 @@ func updatePost(context *gin.Context) {
 			post.Title = p.Title
 			post.Content = p.Content
 			models.UpdatePost(post)
+		} else {
+			_ = context.AbortWithError(http.StatusNotFound, err)
+		}
+	} else {
+		context.AbortWithStatus(http.StatusBadRequest)
+	}
+}
+
+func deletePost(context *gin.Context) {
+	if id := context.Param("post_id"); id != "0" {
+		if post, err := models.GetPostByID(id); err == nil {
+			models.DeletePost(post)
+			return
 		} else {
 			_ = context.AbortWithError(http.StatusNotFound, err)
 		}

@@ -24,12 +24,16 @@ export class PostsComponent implements OnInit {
 
   createPost(title: HTMLInputElement) {
     let postTitle = { title: title.value }
+    this.posts.splice(0, 0, postTitle)
     this.service.create(postTitle)
       .subscribe(response => {
-        this.posts.splice(0, 0, response)
+
+        title.value = ""
       },
       (error : AppError) => {
+        this.posts.splice(0, 1)
         if (error instanceof BadInputError) {
+
           alert("Bad input")
         } else throw error;
       })
@@ -54,13 +58,13 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(post) {
-    this.service.delete(345).subscribe(
-      response => {
-        console.log('Response ok')
-        // this.posts = this.posts.filter(i => i.id !== post.id)
-      },
+    let index = this.posts.indexOf(post)
+    this.posts = this.posts.filter(i => i.id !== post.id)
+    this.service.delete(post.id).subscribe(
+      null,
       (error: Response) => {
-        // console.log(error)
+
+        this.posts.splice(index, 0, post)
         if (error.status === 404) {
           alert("This port has already been deleted")
         } else {

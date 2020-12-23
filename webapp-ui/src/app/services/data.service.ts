@@ -23,7 +23,7 @@ export class DataService {
       })
     };
     return this.http.get(this.url, httpOptions).pipe(map(response => {
-      console.log(response)
+      console.log("response", response)
       return response
     })).pipe(catchError(this.handleError))
   }
@@ -35,7 +35,10 @@ export class DataService {
       })
     };
     return this.http.post(this.url, JSON.stringify(resource), httpOptions)
-        .pipe(map(response => response))
+        .pipe(map(response => {
+          console.log("response", response)
+          return response
+        }))
         .pipe(catchError(this.handleError))
   }
 
@@ -50,6 +53,7 @@ export class DataService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    console.log(error)
     if (error.status == 404) {
       return throwError(new NotFoundError(error))
     } else if (error.status == 400) {

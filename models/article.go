@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"go.mongodb.org/mongo-driver/bson"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
@@ -12,7 +13,7 @@ import (
 )
 
 type Post struct {
-	ID      int    `json:"id,omitempty" bson:"_id"`
+	ID      primitive.ObjectID    `json:"id,omitempty" bson:"_id,omitempty"`
 	Title   string `json:"title,omitempty"`
 	Content string `json:"content,omitempty"`
 }
@@ -32,19 +33,23 @@ func GetAllArticles() []Post {
 	return articleResult
 }
 
-func GetPostByID(id int) (*Post, error) {
+func GetPostByID(id string) (*Post, error) {
 	var result Post
 	collection := client.Database("story-mongo-store").Collection("posts")
-	filter := bson.D{{"_id", id}}
-	err := collection.FindOne(context.TODO(), filter).Decode(&result)
+	objectId, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		return nil, errors.New("Post not found")
+		return nil, errors.New("id is invalid")
+	}
+	filter := bson.D{{"_id", objectId}}
+	err = collection.FindOne(context.TODO(), filter).Decode(&result)
+	if err != nil {
+		return nil, errors.New("post not found")
 	}
 	return &result, nil
 }
 
 func CreatePost(p *Post) *Post {
-	collection := client.Database("story-mongo-store").Collection("articles")
+	collection := client.Database("story-mongo-store").Collection("posts")
 	doc, _ := toDoc(p)
 	podcastResult, err := collection.InsertOne(context.TODO(), doc)
 	if err != nil {
@@ -52,6 +57,7 @@ func CreatePost(p *Post) *Post {
 		return nil
 	}
 	fmt.Println(podcastResult.InsertedID)
+	p.ID = podcastResult.InsertedID.(primitive.ObjectID)
 	return p
 }
 
@@ -75,6 +81,15 @@ func UpdatePost(p *Post) {
 	if result.UpsertedCount != 0 {
 		fmt.Printf("inserted a new document with ID %v\n", result.UpsertedID)
 	}
+}
+
+func DeletePost(p *Post) {
+	collection := client.Database("story-mongo-store").Collection("posts")
+	res, err := collection.DeleteOne(context.TODO(), bson.M{"_id": p.ID})
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("deleted %v documents\n", res.DeletedCount)
 }
 
 func toDoc(v interface{}) (doc *bson.D, err error) {
