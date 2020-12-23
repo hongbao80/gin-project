@@ -1,3 +1,7 @@
+import { GithubFollowersService } from './services/github-followers.service';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { GithubProfileComponent } from './github-profile/github-profile.component';
+import { HomeComponent } from './home/home.component';
 import { ErrorHandler } from '@angular/core';
 import { PostService } from './post.service';
 import { SignupFormComponent } from './signup-form/signup-form.component';
@@ -16,6 +20,9 @@ import { NewCourseFormComponent } from './newcourseform/newcourseform.component'
 import { PostsComponent } from './posts/posts.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppErrorHandler } from './common/app-error-handler';
+import { RouterModule } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+import { GithubFollowersComponent } from './github-followers/github-followers.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,18 +34,28 @@ import { AppErrorHandler } from './common/app-error-handler';
     ContactFormComponent,
     SignupFormComponent,
     NewCourseFormComponent,
-    PostsComponent
+    PostsComponent,
+    NavbarComponent,
+    GithubFollowersComponent 
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'followers/:username', component: GithubProfileComponent },
+      { path: 'followers', component: GithubFollowersComponent },
+      { path: 'posts', component: PostsComponent },
+      { path: '**', component: NotFoundComponent },
+    ])
   ],
   providers: [
     CoursesService,
     PostService,
-    {provide: ErrorHandler, useClass: AppErrorHandler}
+    GithubFollowersService,
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })

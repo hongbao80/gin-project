@@ -58,20 +58,6 @@ export class PostsComponent implements OnInit {
   }
 
   deletePost(post) {
-    let index = this.posts.indexOf(post)
-    this.posts = this.posts.filter(i => i.id !== post.id)
-    this.service.delete(post.id).subscribe(
-      null,
-      (error: Response) => {
-
-        this.posts.splice(index, 0, post)
-        if (error.status === 404) {
-          alert("This port has already been deleted")
-        } else {
-          alert("An unexpected error occurred")
-        }
-      }
-    )
-    
+    this.service.delete(post.id).subscribe()
   }
 }
