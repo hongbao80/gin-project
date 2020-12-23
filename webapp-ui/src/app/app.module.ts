@@ -45,7 +45,7 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'followers/:username', component: GithubProfileComponent },
+      { path: 'followers/:id', component: GithubProfileComponent },
       { path: 'followers', component: GithubFollowersComponent },
       { path: 'posts', component: PostsComponent },
       { path: '**', component: NotFoundComponent },
