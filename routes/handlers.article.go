@@ -96,6 +96,8 @@ func deletePost(context *gin.Context) {
 	}
 }
 
+
+
 // Render one of HTML, JSON or CSV based on the 'Accept' header of the request
 // If the header doesn't specify this, HTML is rendered, provided that
 // the template name is present

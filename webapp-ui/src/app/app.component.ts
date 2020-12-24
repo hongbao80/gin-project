@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { FavoriteChangedEventArgs } from './favorite/favorite.component'
 
 @Component({
   selector: 'app-root',
@@ -7,8 +6,5 @@ import { FavoriteChangedEventArgs } from './favorite/favorite.component'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-   task = {
-     title: 'Review applications',
-     assignee: null
-   }
+  title = 'app works!';
 }

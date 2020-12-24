@@ -1,42 +1,28 @@
-import { GithubFollowersService } from './services/github-followers.service';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { GithubProfileComponent } from './github-profile/github-profile.component';
-import { HomeComponent } from './home/home.component';
-import { ErrorHandler } from '@angular/core';
-import { PostService } from './post.service';
-import { SignupFormComponent } from './signup-form/signup-form.component';
-import { CoursesService } from './courses.service';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { CoursesComponent } from './courses.component';
-import { CourseComponent } from './course/course.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { SummaryPipe } from './summary.pipe';
-import { FavoriteComponent } from './favorite/favorite.component';
-import { PanelComponent } from './panel/panel.component';
-import { ContactFormComponent } from './contact-form/contact-form.component';
-import { NewCourseFormComponent } from './newcourseform/newcourseform.component';
-import { PostsComponent } from './posts/posts.component';
-import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './services/auth-guard.service';
 import { AppErrorHandler } from './common/app-error-handler';
+import { AuthService } from './services/auth.service';
+import { OrderService } from './services/order.service';
+import { AdminComponent } from './admin/admin.component';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { HomeComponent } from './home/home.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
-import { GithubFollowersComponent } from './github-followers/github-followers.component';
+import { NoAccessComponent } from './no-access/no-access.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CourseComponent,
-    CoursesComponent,
-    SummaryPipe,
-    FavoriteComponent,
-    PanelComponent,
-    ContactFormComponent,
-    SignupFormComponent,
-    NewCourseFormComponent,
-    PostsComponent,
-    NavbarComponent,
-    GithubFollowersComponent 
+    LoginComponent,
+    SignupComponent,
+    AdminComponent,
+    HomeComponent,
+    NotFoundComponent,
+    NoAccessComponent
   ],
   imports: [
     BrowserModule,
@@ -45,17 +31,17 @@ import { GithubFollowersComponent } from './github-followers/github-followers.co
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'followers/:id', component: GithubProfileComponent },
-      { path: 'followers', component: GithubFollowersComponent },
-      { path: 'posts', component: PostsComponent },
-      { path: '**', component: NotFoundComponent },
+      { path: 'admin', component: AdminComponent, canActivate :[AuthGuard] },
+      { path: 'login', component: LoginComponent },
+      { path: 'no-access', component: NoAccessComponent }
     ])
+
   ],
   providers: [
-    CoursesService,
-    PostService,
-    GithubFollowersService,
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+    OrderService,
+    AuthService,
+    AuthGuard
+
   ],
   bootstrap: [AppComponent]
 })

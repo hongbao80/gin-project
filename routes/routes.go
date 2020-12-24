@@ -34,8 +34,11 @@ func InitializeRoutes() {
 	router.PUT("/posts/:post_id", updatePost)
 
 	router.DELETE("/posts/:post_id", deletePost)
+	router.POST("/api/authenticate", authenticate)
+	router.GET("/api/orders", getOrders)
 	router.Run()
 }
+
 
 
 
