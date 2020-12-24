@@ -1,3 +1,4 @@
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { AppErrorHandler } from './common/app-error-handler';
 import { AuthService } from './services/auth.service';
@@ -31,7 +32,7 @@ import { NoAccessComponent } from './no-access/no-access.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
-      { path: 'admin', component: AdminComponent, canActivate :[AuthGuard] },
+      { path: 'admin', component: AdminComponent, canActivate :[AuthGuard, AdminAuthGuard] },
       { path: 'login', component: LoginComponent },
       { path: 'no-access', component: NoAccessComponent }
     ])
@@ -40,7 +41,8 @@ import { NoAccessComponent } from './no-access/no-access.component';
   providers: [
     OrderService,
     AuthService,
-    AuthGuard
+    AuthGuard,
+    AdminAuthGuard
 
   ],
   bootstrap: [AppComponent]
