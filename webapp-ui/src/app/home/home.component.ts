@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  helloColor = environment.helloColor
   constructor(public authService: AuthService) { }
 }
