@@ -10,11 +10,10 @@ export class OrderService {
 
   getOrders() {
     let token = localStorage.getItem('token')
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Bearer':  token
-      })
-    };
-    return this.http.get(this.url, httpOptions).pipe(map(response => response))
+    console.log(token)
+    let head = new HttpHeaders()
+    head = head.append("Authorization", "Bearer " + token)
+    let Options = {headers: head}
+    return this.http.get(this.url, Options).pipe(map(response => response))
   }
 }
